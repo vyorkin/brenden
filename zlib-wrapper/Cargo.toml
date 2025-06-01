@@ -1,0 +1,10 @@
+[package]
+name = "zlib-wrapper"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+# Provides C-compatible types in Rust.
+# Whenever we're linking to C libraries, we'll want to use types from libc to
+# maintain compatibility, otherwise it might result in undefined behavior.
+libc = "^0.2"
