@@ -1,3 +1,5 @@
+use libc::{c_int, c_ulong};
+
 // The link attribute tells `rustc` that we need to link these functions to zlib.
 //
 // This is equivalent to adding `-lz` flag at link time.
@@ -6,10 +8,11 @@
 // on macOS: `otool -L target/debug/zlib-wrapper`,
 // on Linux: `ldd`
 // on Windows: `dumpbin`
-
-use libc::{c_int, c_ulong};
 #[link(name = "z")]
 unsafe extern "C" {
+    // The biggest challenge is mapping verious types and functions from C to Rust + libc crate.
+    // The bindgen tool helps us simplify this process.
+
     // --------------------------------------------------------------------------
     // Definitions from zlib.h
     // --------------------------------------------------------------------------
